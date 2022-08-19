@@ -6,14 +6,14 @@ The tool saves dump file as archive \*.dump.
 
 ## Configuration
 
-| Environment variable |   Type   | Value       |
-| :------------------: | :------: | ----------- | --- |
-|    POSTGRES_HOST     |  string  |             |
-|    POSTGRES_USER     |  string  |             |     |
-|    POSTGRES_PORT     |  string  |             |
-|     POSTGRES_DB      | []string | db1,db2,db3 |
-|      PGPASSWORD      |  string  |             |
-|      TIMER_MIN       |  string  | 360         |
+| Environment variable | Type | Value |
+| :----: | :----: | ---- |
+|POSTGRES_HOST | string | |
+|POSTGRES_USER | string | | 
+|POSTGRES_PORT | string | |
+|POSTGRES_DB | []string | db1,db2,db3 |
+|PGPASSWORD | string | |
+|TIMER_MIN | string | 360 |
 
 ## Restore
 
