@@ -1,0 +1,64 @@
+# Default values for helm.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: your.registry.com/tools/postgres-backup
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: 
+  - name: "registry"
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "postgres-backup"
+
+podAnnotations: {}
+
+podSecurityContext: 
+  fsGroup: 1000
+
+securityContext: 
+  runAsNonRoot: true
+  runAsUser: 1000
+  allowPrivilegeEscalation: false
+
+
+resources: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+configMap: {}
+  # POSTGRES_HOST: 
+  # POSTGRES_PORT: 
+  # POSTGRES_DB: 
+  # POSTGRES_USER: 
+  # MINIO_ENDPOINT: minio:9000
+  # MINIO_ACCESS_KEY: minioadmin
+  # TIMER_MIN: 360
+
+secret: {}
+  # PGPASSWORD:
+  # MINIO_SECRET_KEY: pSBXjekXCCYcObUtEYip4oLB56uz45XXLHGe

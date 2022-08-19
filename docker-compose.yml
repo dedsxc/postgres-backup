@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  backup:
+    container_name: postgres-backup
+    image: postgres-backup
+    environment:
+      MINIO_ENDPOINT: minio:9000
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: miniosecret
+      POSTGRES_DB: postgres,template0
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      PGPASSWORD: postgres
+      TIMER_MIN: 360
+
+  minio:
+    container_name: minio
+    image: docker.io/bitnami/minio
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+
+  postgres:
+    image: postgis/postgis
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres

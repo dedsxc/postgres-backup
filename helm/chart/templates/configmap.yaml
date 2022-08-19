@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.serviceAccount.name }}
+  labels:
+  {{- include "postgres-backup.labels" . | nindent 4 }}
+data:
+  {{- range $var, $value := .Values.configMap }}
+    {{ $var }}: {{ $value | quote }}
+  {{- end }}
