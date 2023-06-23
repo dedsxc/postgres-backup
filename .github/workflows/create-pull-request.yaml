@@ -1,0 +1,29 @@
+name: Create Pull Request
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Branch name
+        id: branch_name
+        run: echo "BRANCH_NAME=${GITHUB_REF/refs\/heads\//}" >> $GITHUB_ENV
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref  }}
+          title: ${{ env.BRANCH_NAME }}
+          body: |
+            This pull request is automatically created by a GitHub Action.
+            Branch: ${{ env.BRANCH_NAME }}
+          delete-branch: true
+        #  draft: false
